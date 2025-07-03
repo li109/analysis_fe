@@ -4,6 +4,9 @@
     <div class="select-box">
       <div class="select-left">
         <el-form :inline="true" :model="companySelect" class="demo-form-inline">
+          <el-form-item label="名称代码：">
+            <el-input v-model="companySelect.name" size="small" style="width: 136px" placeholder="请输入名称或代码" clearable />
+          </el-form-item>
           <el-form-item label="所有制性质：">
             <el-select v-model="companySelect.classi_name" size="small" style="width: 136px">
               <el-option v-for="item in companySelectOption.classi_name_option" :key="item.value" :label="item.name"
@@ -16,9 +19,6 @@
                 :value="item.value" />
             </el-select>
           </el-form-item>
-          <el-form-item label="名称代码：">
-            <el-input v-model="companySelect.text" size="small" style="width: 136px" placeholder="请输入名称或代码" clearable />
-          </el-form-item>
         </el-form>
       </div>
       <div class="select-right">
@@ -28,17 +28,21 @@
     </div>
     <el-table :data="stockList" stripe style="width: 100%">
       <el-table-column type="index" label="序号" align="center" width="60" />
-      <el-table-column prop="symbol" label="股票代码" align="center" width="100" />
-      <el-table-column label="公司简称" align="center" width="80">
+      <el-table-column prop="stock_symbol" label="股票代码" align="center" width="100" />
+      <el-table-column label="公司简称" align="center" width="111">
         <template #default="scope">
-          <div class="table-click" @click="gotoDetails(scope.row.symbol)">{{ scope.row.stockName }}</div>
+          <div class="table-click" @click="gotoDetails(scope.row.stock_symbol)">{{ scope.row.stock_name }}</div>
         </template>
       </el-table-column>
-      
       <el-table-column prop="classi_name" label="所有制性质" align="center" width="110" />
-      <el-table-column prop="actual_controller" show-overflow-tooltip label="股息率" align="center" />
-      <el-table-column prop="provincial_name" show-overflow-tooltip label="总市值" align="center" width="90" />
-      <el-table-column prop="listed_date" label="更新时间" align="center" width="110" />
+      <el-table-column label="股息率" align="center" width="123">
+        <template #default="scope">
+          <div v-if="scope.row.dividend_yield">{{ scope.row.dividend_yield }}%</div>
+          <div v-else></div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="market_value" label="总市值" align="center" />
+      <el-table-column prop="updated_at" label="更新时间" align="center" width="170" />
     </el-table>
     <div class="pagination">
       <el-pagination v-model:current-page="pageData.currentPage" v-model:page-size="pageData.pageSize"
@@ -62,9 +66,9 @@ const router = useRouter()
 const stockList = ref([])
 
 const companySelect = reactive({
-  classi_name: '央企国资控股',
-  status: 1,
-  text: ''
+  name: '',
+  classi_name: '',
+  status: ''
 })
 
 const pageData = reactive({
@@ -74,12 +78,21 @@ const pageData = reactive({
 })
 
 const companySelectOption = reactive({
-  classi_name_option: [{ name: '全部', value: '全部' }],
+  classi_name_option: [
+    { name: '全部', value: '' },
+    { name: '央企国资控股', value: '央企国资控股' },
+    { name: '地方国资控股', value: '地方国资控股' },
+    { name: '民营企业', value: '民营企业' },
+    { name: '外资企业', value: '外资企业' },
+    { name: '上市公司', value: '上市公司' },
+    { name: '其他', value: '其他' }
+  ],
   status_option: [
-    { name: '全部', value: 0 },
+    { name: '全部', value: '' },
     { name: '正常', value: 1 },
     { name: '停牌', value: 2 },
     { name: '退市', value: 3 },
+    { name: '未上市', value: 0 },
   ]
 })
 
@@ -87,6 +100,10 @@ const companySelectOption = reactive({
 const queryList = () => {
   const params = {
     page: pageData.currentPage,
+    page_size: pageData.pageSize,
+    name: companySelect.name,
+    classi_name: companySelect.classi_name,
+    status: companySelect.status
   }
   getStockList(params).then((res: any) => {
     if(res.count) pageData.total = res.count
@@ -100,9 +117,11 @@ const queryList = () => {
 
 // 重置
 const resetList = () => {
-  companySelect.classi_name = '央企国资控股'
-  companySelect.status = 1
-  companySelect.text = ''
+  pageData.currentPage = 1
+  pageData.pageSize = 10
+  companySelect.name = ''
+  companySelect.classi_name = ''
+  companySelect.status = ''
   queryList()
 }
 
