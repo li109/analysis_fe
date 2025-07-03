@@ -1,0 +1,92 @@
+[
+  {
+    "name": "上海机场",
+    "code": "600009",
+    "enterpriseNature": "省属国资控股",
+    "industry": "航空机场",
+    "beginTime": "1998-02-18",
+    "historicalHighs": "86",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "工商银行",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "海康威视",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "京东方A",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "中国医药",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "中国电影",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "中国铝业",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "中国黄金",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  },
+  {
+    "name": "中体产业",
+    "code": "",
+    "enterpriseNature": "",
+    "industry": "",
+    "beginTime": "",
+    "historicalHighs": "",
+    "expectedPrice": "",
+    "currentPrice": ""
+  }
+]

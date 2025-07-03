@@ -1,0 +1,12 @@
+[
+  {
+    "name": "股票",
+    "icon": "Document",
+    "children": [
+      {
+        "name": "股票列表",
+        "path": "/stock/list"
+      }
+    ]
+  }
+]
